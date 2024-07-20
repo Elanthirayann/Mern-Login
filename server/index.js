@@ -9,8 +9,9 @@ const app = express();
 app.use(express.json())
 app.use(cors())
 
-const mongodb_uri = process.env.mongodb_uri
-const PORT = process.env.PORT || 5000
+const MONGODB_CONNECT_URI = process.env.mongodb_uri;
+const PORT = process.env.PORT 
+
 mongoose.connect("mongodb://127.0.0.1:27017/employee")
 
 
@@ -40,6 +41,6 @@ app.post('/register', (req, res) => {
    .catch(err => res.json(err))
 })
 
-app.listen(3001, () => { 
-    console.log("Server is running on port 3001")
+app.listen(PORT, () => { 
+    console.log("Server is running on port " + PORT)
 })

@@ -12,20 +12,24 @@ function Login() {
     e.preventDefault();
     axios
       .post("http://localhost:3001/login", { email: email, password: password })
-      .then((result) => {
-        console.log(result);
-        if (result.data === "success") {
+      .then((response) => {
+        console.log(response);
+        if (
+          response.status === 200 &&
+          response.data === "Successfully logged in"
+        ) {
           // Show alert
           window.alert("Login successful!");
           navigate("/home");
         } else {
-          console.log("Login failed:", result.data); 
+          console.log("Login failed:", response.data);
         }
       })
       .catch((err) => {
         console.error("Error:", err);
       });
   };
+
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
